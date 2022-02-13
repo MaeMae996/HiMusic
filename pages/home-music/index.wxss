@@ -1,0 +1,16 @@
+/* pages/home-music/index.wxss */
+.van-search__content {
+  background-color: #fff !important;
+}
+
+.banners {
+  margin: 0 20rpx;
+}
+
+.banners-item {
+  display: flex;
+}
+
+.banners-pic {
+  width: 100%;
+}

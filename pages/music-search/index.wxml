@@ -1,0 +1,2 @@
+<!--pages/music-search/index.wxml-->
+<van-search shape="round" background="#f7f7f7" placeholder="搜索您喜欢的歌曲" />

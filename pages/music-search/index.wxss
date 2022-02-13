@@ -1,0 +1,4 @@
+/* pages/music-search/index.wxss */
+.van-search__content {
+  background-color: #fff !important;
+}

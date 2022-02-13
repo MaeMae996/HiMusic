@@ -1,0 +1,29 @@
+/* pages/detail-video/index.wxss */
+page {
+  padding-top: 450rpx;
+}
+
+.video {
+  width: 100%;
+  top: 0;
+  position: fixed;
+}
+
+.mv-info {
+  padding: 30rpx;
+}
+
+.mv-title {
+  font-weight: 700;
+}
+
+.mv-description,
+.mv-other {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.recommend {
+  padding: 30rpx;
+}
