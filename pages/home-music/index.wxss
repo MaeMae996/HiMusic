@@ -26,3 +26,7 @@ page {
 .banners-pic {
   width: 100%;
 }
+
+.recommend-songs {
+  margin-top: 30rpx;
+}

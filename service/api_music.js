@@ -18,7 +18,7 @@ export function getBannerList() {
  * 2 新歌
  * 3 原创
  */
-export function getTopList(idx) {
+export function getRankings(idx) {
   return xmRequest.get('/top/list', { idx })
 }
 

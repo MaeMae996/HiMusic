@@ -1,0 +1,11 @@
+<!--components/song-item-v1/index.wxml-->
+<view class="song-item">
+  <image class="song-image" src="{{item.al.picUrl}}"></image>
+  <view class="song-content">
+    <view class="song-name">{{item.name}}</view>
+    <view class="song-source">{{item.ar[0].name}}-{{item.al.name}}</view>
+  </view>
+  <view class="song-arrow">
+    <image class="song-icon" src="/assets/images/icons/arrow-right.png"></image>
+  </view>
+</view>
