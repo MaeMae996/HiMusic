@@ -46,7 +46,6 @@ Page({
   handleSwiperImageLoaded: function () {
     // 获取图片宽高（如何获取某一个组件<image/>的高度）
     throttleQueryRect(".banners-pic").then(res => {
-      console.log(111);
       this.setData({ swiperHeight: res[0].height })
     })
   },
