@@ -4,7 +4,7 @@
   <view class="ranking-content">
     <view class="content-title">{{itemInfo.name}}</view>
     <view class="content-list">
-      <block wx:for="{{itemInfo.songList}}">
+      <block wx:for="{{itemInfo.songList}}" wx:key="index">
         <view class="content-list-item">
           <text class="song-title">{{index+1}}. {{item.name}}</text>
           <text class="singer">- {{item.ar[0].name}}</text>

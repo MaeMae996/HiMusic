@@ -1,5 +1,5 @@
 // pages/home-music/index.js
-import { rankingStore } from '../../store/index'
+import { rankingStore, rankingMap } from '../../store/index'
 import { getBannerList, getSongMenu } from '../../service/api_music'
 import getSwiperHeight from '../../utils/query-rect'
 import throttle from '../../utils/throttle'
@@ -61,7 +61,6 @@ Page({
     })
   },
 
-
   /**
    * 事件处理
    */
@@ -80,6 +79,23 @@ Page({
     })
   },
 
+  /**
+   * 点击更多跳转详情页
+   */
+  handleMoreClick: function () {
+    this.navigateToDetailSongPage('hotRanking')
+  },
+  handleRankingItemClick: function (event) {
+    const idx = event.currentTarget.dataset.idx
+    const rankingName = rankingMap[idx]
+    this.navigateToDetailSongPage(rankingName)
+
+  },
+  navigateToDetailSongPage: function (rankingName) {
+    wx.navigateTo({
+      url: `/pages/detail-song/index?ranking=${rankingName}`,
+    })
+  },
   getRankingHandler: function (idx) {
     return (res) => {
       if (Object.keys(res).length === 0) return
