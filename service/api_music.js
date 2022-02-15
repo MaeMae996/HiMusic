@@ -13,10 +13,10 @@ export function getBannerList() {
 /**
  * 获取歌曲榜单
  * @param {number} idx 
- * 0 飙升
- * 1 热门
- * 2 新歌
- * 3 原创
+ * 0 新歌 
+ * 1 热门 
+ * 2 原创
+ * 3 飙升
  */
 export function getRankings(idx) {
   return xmRequest.get('/top/list', { idx })
@@ -27,6 +27,6 @@ export function getRankings(idx) {
  * @param {string} cat 类别 "全部"、“华语”、“古风“、”欧美“、“流行“
  * @param {number} limit 取出歌单数量 
  */
-export function getSongMenu(cat = "全部", limit = 6) {
-  return xmRequest.get('/top/playlist', { cat, limit })
+export function getSongMenu(cat = "全部", limit = 6, offset = 0) {
+  return xmRequest.get('/top/playlist', { cat, limit, offset })
 }

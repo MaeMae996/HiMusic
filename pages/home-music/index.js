@@ -1,6 +1,6 @@
 // pages/home-music/index.js
 import { rankingStore } from '../../store/index'
-import { getBannerList } from '../../service/api_music'
+import { getBannerList, getSongMenu } from '../../service/api_music'
 import getSwiperHeight from '../../utils/query-rect'
 import throttle from '../../utils/throttle'
 
@@ -13,7 +13,16 @@ Page({
   data: {
     banners: [],
     swiperHeight: 0,
-    recommendSongs: []
+    recommendSongs: [],
+    hotSongMenu: [],
+    recommendSongMenu: [],
+    // 0 新歌 1 热门 2 原创 3 飙升
+    // 不能设置为数组，因为顺序有可能乱
+    rankings: {
+      0: {},
+      2: {},
+      3: {}
+    }
   },
 
   /**
@@ -29,10 +38,12 @@ Page({
     // 从store获取共享的数据  
     rankingStore.onState("hotRanking", (res) => {
       const recommendSongs = res.tracks?.slice(0, 6)
-      console.log(recommendSongs);
       this.setData({ recommendSongs })
-
     })
+    // rankingStore.onState("newRanking", this.getNewRankingHandler)
+    rankingStore.onState("newRanking", this.getRankingHandler(0))
+    rankingStore.onState("originRanking", this.getRankingHandler(2))
+    rankingStore.onState("upRanking", this.getRankingHandler(3))
   },
 
   /**
@@ -42,6 +53,12 @@ Page({
     getBannerList().then(res => {
       this.setData({ banners: res.banners })
     })
+    getSongMenu().then(res => {
+      this.setData({ hotSongMenu: res.playlists })
+    })
+    getSongMenu('华语').then(res => {
+      this.setData({ recommendSongMenu: res.playlists })
+    })
   },
 
 
@@ -49,7 +66,6 @@ Page({
    * 事件处理
    */
   handleSearchClick: function () {
-    console.log(111);
     wx.navigateTo({
       url: '../music-search/index',
     })
@@ -62,6 +78,23 @@ Page({
     throttleQueryRect(".banners-pic").then(res => {
       this.setData({ swiperHeight: res[0].height })
     })
+  },
+
+  getRankingHandler: function (idx) {
+    return (res) => {
+      if (Object.keys(res).length === 0) return
+      const name = res.name;
+      const cover = res.coverImgUrl;
+      const count = res.playCount;
+      const songList = res.tracks.slice(0, 3)
+      const rankingObj = { name, cover, count, songList }
+      this.setData({
+        rankings: {
+          ...this.data.rankings,
+          [idx]: rankingObj
+        }
+      })
+    }
   },
 
   onUnload: function () {
