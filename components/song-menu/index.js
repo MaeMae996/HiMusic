@@ -5,9 +5,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    title:{
-      type:String,
-      value:''
+    title: {
+      type: String,
+      value: ''
     },
     songMenu: {
       type: Array,
@@ -26,6 +26,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleMenuItemClick: function (e) {
+      const id = e.currentTarget.dataset.item.id
+      wx.navigateTo({
+        url: `/pages/detail-song/index?id=${id}&type=menu`,
+      })
+    }
   }
 })

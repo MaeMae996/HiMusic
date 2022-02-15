@@ -80,11 +80,15 @@ Page({
   },
 
   /**
-   * 点击更多跳转详情页
+   * 点击推荐歌曲的”更多“跳转歌单详情页
    */
   handleMoreClick: function () {
     this.navigateToDetailSongPage('hotRanking')
   },
+  /**
+   * 点击榜单item，跳转到对应的榜单详情
+   * @param {*} event 
+   */
   handleRankingItemClick: function (event) {
     const idx = event.currentTarget.dataset.idx
     const rankingName = rankingMap[idx]
@@ -93,7 +97,7 @@ Page({
   },
   navigateToDetailSongPage: function (rankingName) {
     wx.navigateTo({
-      url: `/pages/detail-song/index?ranking=${rankingName}`,
+      url: `/pages/detail-song/index?ranking=${rankingName}&type=rank`,
     })
   },
   getRankingHandler: function (idx) {

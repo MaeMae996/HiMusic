@@ -30,3 +30,11 @@ export function getRankings(idx) {
 export function getSongMenu(cat = "全部", limit = 6, offset = 0) {
   return xmRequest.get('/top/playlist', { cat, limit, offset })
 }
+
+/**
+ * 获取歌单详情动态部分,如评论数,是否收藏,播放数
+ * @param {number} id 歌单 id
+ */
+export function getMenuDetail(id){
+  return xmRequest.get('/playlist/detail/dynamic',{id})
+}
