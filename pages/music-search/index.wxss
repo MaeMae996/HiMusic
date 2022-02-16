@@ -1,6 +1,14 @@
 /* pages/music-search/index.wxss */
 page {
   padding: 0 20rpx;
+  padding-top: 54px;
+}
+
+.search {
+  position: fixed;
+  top: 0;
+  left: 20rpx;
+  right: 20rpx;
 }
 
 /* 热门搜索 */
@@ -45,4 +53,9 @@ page {
 
 .sugget-keywords {
   font-size: 28rpx;
+}
+
+.search-result .title {
+  font-size: 34rpx;
+  color: #26ce8a;
 }
