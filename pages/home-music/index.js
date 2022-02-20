@@ -4,7 +4,7 @@ import { getBannerList, getSongMenu } from '../../service/api_music'
 import getSwiperHeight from '../../utils/query-rect'
 import throttle from '../../utils/throttle'
 
-const throttleQueryRect = throttle(getSwiperHeight, 1000)
+const throttleQueryRect = throttle(getSwiperHeight, 1000, { trailing: true })
 Page({
 
   /**

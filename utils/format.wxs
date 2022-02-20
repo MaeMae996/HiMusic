@@ -18,8 +18,8 @@ function padLeftZero(time) {
 function formatDuration(duration) {
   duration = duration / 1000
   var min = Math.floor(duration / 60)
-  var sec = duration % 60
-  return padLeftZero(min) + ':' + sec
+  var sec = Math.floor(duration % 60)
+  return padLeftZero(min) + ':' + padLeftZero(sec)
 }
 
 module.exports = {

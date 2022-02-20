@@ -1,5 +1,6 @@
 <!--components/detail-song-item/index.wxml-->
-<view class="item">
+<!-- 歌单歌曲 -->
+<view class="item" bindtap="handleSongItemClick">
   <view class="index app-color">{{index}}</view>
   <view class="info">
     <view class="name">{{itemInfo.name}}</view>

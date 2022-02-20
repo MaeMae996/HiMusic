@@ -11,7 +11,15 @@
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "music-player",
+          "pathName": "pages/music-player/index",
+          "query": "id=1901371647",
+          "scene": null,
+          "launchMode": "default"
+        }
+      ]
     }
   }
 }

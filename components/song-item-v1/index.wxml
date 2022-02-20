@@ -1,5 +1,6 @@
 <!--components/song-item-v1/index.wxml-->
-<view class="song-item">
+<!-- 推荐歌曲 -->
+<view class="song-item" bindtap="handleSongItemClick">
   <image class="song-image" src="{{item.al.picUrl}}"></image>
   <view class="song-content">
     <view class="song-name">{{item.name}}</view>

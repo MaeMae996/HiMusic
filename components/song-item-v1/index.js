@@ -1,3 +1,5 @@
+import { playerStore } from "../../store/player-store"
+
 // components/song-item-v1/index.js
 Component({
   /**
@@ -21,6 +23,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleSongItemClick: function () {
+      const id = this.properties.item.id
+      // 页面跳转
+      wx.navigateTo({
+        url: '/pages/music-player/index?id=' + id,
+      })
+      // 对歌曲的数据请求和其他操作
+      playerStore.dispatch("playMusicWithSongIdAction", { id })
+    }
   }
 })
