@@ -8,6 +8,6 @@
 <!-- 歌曲 -->
 <view class="song-list">
   <block wx:for="{{rankingInfo.tracks}}" wx:key="id">
-    <detail-song-item itemInfo="{{item}}" index="{{index+1}}"></detail-song-item>
+    <detail-song-item itemInfo="{{item}}" index="{{index+1}}" bindtap="handleSongItemClick" data-index="{{index}}"></detail-song-item>
   </block>
 </view>

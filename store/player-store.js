@@ -6,6 +6,7 @@ const audioContext = wx.createInnerAudioContext()
 
 const playerStore = new HYEventStore({
   state: {
+    isFirstPlay: true,
     // 歌曲信息
     id: 0,
     songDetail: {},
@@ -17,13 +18,29 @@ const playerStore = new HYEventStore({
     currentLyricIndex: 0,
 
     playModeIndex: 0, //0 循环播放 1 单曲循环 2 随机播放
-    isPlaying: false
+    isPlaying: false,
 
+    // 上/下一首
+    playListSongs: [],//记录歌曲列表
+    playListIndex: 0,//当前播放歌曲的索引,
+    currentSong: ''
   },
   actions: {
     playMusicWithSongIdAction: function (ctx, { id }) {
+      if (ctx.id == id) {
+        this.dispatch("changeMusicPlayStateAction", true)
+        return
+      }
       ctx.id = id
       ctx.isPlaying = true
+      // 消除上一首歌的信息，防止在切换歌曲时出现残影
+      ctx.songDetail = {}
+      ctx.currentTime = 0
+      ctx.durationTime = 0
+      ctx.songLyric = []
+      ctx.currentTime = 0
+      ctx.currentLyricText = ''
+      ctx.currentLyricIndex = 0
       // 1. 请求歌曲数据
       // 请求歌曲详情
       getSongDetail(id).then(res => {
@@ -43,7 +60,10 @@ const playerStore = new HYEventStore({
       audioContext.autoplay = true
 
       // 3. 监听AudioContext一些事件
-      this.dispatch("setupAudioContextListenerAction")
+      if (ctx.isFirstPlay) {
+        this.dispatch("setupAudioContextListenerAction")
+        ctx.isFirstPlay = false
+      }
     },
 
     setupAudioContextListenerAction: function (ctx) {
@@ -79,11 +99,44 @@ const playerStore = new HYEventStore({
 
         }
       })
+
+      // 3. 监听歌曲播放完成
+      // 自动播放下一首
+      audioContext.onEnded(() => {
+        this.dispatch("changeNewMusicAction")
+      })
     },
 
-    changeMusicPlayStateAction: function (ctx) {
-      ctx.isPlaying = !ctx.isPlaying
-      ctx.isPlaying ?audioContext.play():audioContext.pause()
+    changeMusicPlayStateAction: function (ctx, isPlaying = true) {
+      ctx.isPlaying = isPlaying
+      ctx.isPlaying ? audioContext.play() : audioContext.pause()
+    },
+
+    changeNewMusicAction: function (ctx, isNext = true) {
+      // 获取索引
+      let index = ctx.playListIndex
+
+      // 根据不同播放模式，获取下一首歌的索引
+      switch (ctx.playModeIndex) {
+        case 0: //顺序播放
+          index = isNext ? index + 1 : index - 1
+          if (index === -1) index = ctx.playListSongs.length - 1
+          if (index === ctx.playListSongs.length) index = 0
+          break
+        case 1: //单曲循环
+          break
+        case 2: //随机播放
+          index = Math.floor(Math.random() * ctx.playListSongs.length)
+          break
+      }
+      // 获取歌曲
+      let songDetail = ctx.playListSongs[index]
+      if (!songDetail) {
+        songDetail = ctx.songDetail
+      } else {
+        ctx.playListIndex = index
+      }
+      this.dispatch("playMusicWithSongIdAction", { id: songDetail.id })
     }
   }
 })

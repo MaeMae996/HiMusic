@@ -28,7 +28,9 @@ Page({
     playModeIndex: 0,
     playModeName: 'order',
     isPlaying: false,
-    playingName: 'pause'
+    playingName: 'pause',
+
+
   },
 
   /**
@@ -148,6 +150,7 @@ Page({
     wx.navigateBack()
   },
 
+  // 播放操作
   handleModeClick: function () {
     // 0 1 2
     let playModeIndex = this.data.playModeIndex + 1
@@ -156,10 +159,25 @@ Page({
     playerStore.setState("playModeIndex", playModeIndex)
   },
 
+  /**
+   * 播放/暂停
+   */
   handlePlayingClick: function () {
     // 这个只是修改了播放状态，并没有暂停/播放歌曲。要通过audioContext调用API实现
     // playerStore.setState("isPlaying", !this.data.isPlaying)
-    playerStore.dispatch("changeMusicPlayStateAction")
+    playerStore.dispatch("changeMusicPlayStateAction", !this.data.isPlaying)
+  },
+  /**
+   * 上一首
+   */
+  handlePrevBtnClick: function () {
+    playerStore.dispatch("changeNewMusicAction", false)
+  },
+  /**
+   * 下一首
+   */
+  handleNextBtnClick: function () {
+    playerStore.dispatch("changeNewMusicAction", true)
   },
 
   // ============================数据监听============================
@@ -203,13 +221,5 @@ Page({
         this.setData({ isPlaying, playingName: isPlaying ? 'pause' : 'resume' })
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   }
-
 })
