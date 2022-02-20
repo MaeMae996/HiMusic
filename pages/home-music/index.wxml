@@ -32,12 +32,14 @@
 </view>
 
 <!-- 播放工具栏 -->
+<view class="play-bar-placeholder" wx:if="{{songDetail.id}}"></view>
 <view class="play-bar" wx:if="{{songDetail.id}}" bindtap="handlePlayBarClick" data-id="{{songDetail.id}}">
   <view class="left">
     <image class="album album-anim" style="animation-play-state: {{isPlaying?'none':'paused'}};" mode="aspectFill" src="{{songDetail.al.picUrl}}"></image>
     <view class="name">{{songDetail.name}}</view>
   </view>
   <view class="right">
+    <!-- 不用bindtap，用catchtap可以防止事件冒泡 -->
     <image class="icon play" catchtap="handlePlayBtnClick" src="/assets/images/music/{{isPlaying?'pause':'play'}}_icon.png"></image>
     <image class="icon playlist" src="/assets/images/music/playlist_icon.png"></image>
   </view>
