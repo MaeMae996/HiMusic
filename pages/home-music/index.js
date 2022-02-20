@@ -132,6 +132,7 @@ Page({
   },
   setupPlayerStoreListener: function () {
     rankingStore.onState("hotRanking", (res) => {
+      if (!res.tracks) return
       const recommendSongs = res.tracks?.slice(0, 6)
       this.setData({ recommendSongs })
     })
