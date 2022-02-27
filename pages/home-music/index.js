@@ -61,7 +61,7 @@ Page({
    */
   handleSearchClick: function () {
     wx.navigateTo({
-      url: '../music-search/index',
+      url: '/packageDetail/pages/music-search/index',
     })
   },
   /**
@@ -92,7 +92,7 @@ Page({
   },
   navigateToDetailSongPage: function (rankingName) {
     wx.navigateTo({
-      url: `/pages/detail-song/index?ranking=${rankingName}&type=rank`,
+      url: `/packageDetail/pages/detail-song/index?ranking=${rankingName}&type=rank`,
     })
   },
   getRankingHandler: function (idx) {
@@ -127,7 +127,7 @@ Page({
   handlePlayBarClick: function (e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/music-player/index?id=' + id,
+      url: '/packagePlayer/pages/music-player/index?id=' + id,
     })
   },
   setupPlayerStoreListener: function () {

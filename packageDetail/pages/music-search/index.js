@@ -1,7 +1,7 @@
 // pages/music-search/index.js
-import { getSearchHot, getSearchSuggest, getSearchResult } from '../../service/api_search'
-import debounce from '../../utils/debounce'
-import stringToNodes from '../../utils/string2nodes'
+import { getSearchHot, getSearchSuggest, getSearchResult } from '../../../service/api_search'
+import debounce from '../../../utils/debounce'
+import stringToNodes from '../../../utils/string2nodes'
 const debounceSearchSuggest = debounce(getSearchSuggest, 100)
 
 Page({
@@ -38,7 +38,7 @@ Page({
     this.setData({ searchVal })
     // 3. 判断关键字为空字符的处理逻辑
     if (!searchVal.length) {
-      this.setData({ searchSuggest: [],resultSongs:[] })
+      this.setData({ searchSuggest: [], resultSongs: [] })
       debounceSearchSuggest.cancel()
       return
     }

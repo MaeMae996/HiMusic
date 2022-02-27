@@ -35,11 +35,11 @@
       </view>
     </view>
     <view class="song-operation">
-      <image class="btn btn-mode" bindtap="handleModeClick" src="/assets/images/player/play_{{playModeName}}.png"></image>
-      <image class="btn btn-prev" bindtap="handlePrevBtnClick" src="/assets/images/player/play_prev.png"></image>
-      <image class="btn btn-pause" bindtap="handlePlayingClick" src="/assets/images/player/play_{{playingName}}.png"></image>
-      <image class="btn btn-next" bindtap="handleNextBtnClick" src="/assets/images/player/play_next.png"></image>
-      <image class="btn btn-music" bindtap="" src="/assets/images/player/play_music.png"></image>
+      <image class="btn btn-mode" bindtap="handleModeClick" src="/packagePlayer/assets/images/player/play_{{playModeName}}.png"></image>
+      <image class="btn btn-prev" bindtap="handlePrevBtnClick" src="/packagePlayer/assets/images/player/play_prev.png"></image>
+      <image class="btn btn-pause" bindtap="handlePlayingClick" src="/packagePlayer/assets/images/player/play_{{playingName}}.png"></image>
+      <image class="btn btn-next" bindtap="handleNextBtnClick" src="/packagePlayer/assets/images/player/play_next.png"></image>
+      <image class="btn btn-music" bindtap="" src="/packagePlayer/assets/images/player/play_music.png"></image>
     </view>
   </swiper-item>
   <swiper-item class="lyric">

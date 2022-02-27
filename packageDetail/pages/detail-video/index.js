@@ -1,5 +1,5 @@
 // pages/detail-video/index.js
-import { getMVDetial, getMVURL, getRelateMV } from '../../service/api_video'
+import { getMVDetial, getMVURL, getRelateMV } from '../../../service/api_video'
 
 Page({
 

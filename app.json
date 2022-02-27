@@ -2,12 +2,35 @@
   "pages": [
     "pages/home-music/index",
     "pages/home-video/index",
-    "pages/detail-video/index",
-    "pages/music-search/index",
-    "pages/detail-song/index",
-    "pages/music-player/index",
     "pages/home-profile/index"
   ],
+  "subPackages": [
+    {
+      "root": "packageDetail",
+      "name": "pDetail",
+      "pages": [
+        "pages/music-search/index",
+        "pages/detail-song/index",
+        "pages/detail-video/index"
+      ]
+    },
+    {
+      "root": "packagePlayer",
+      "name": "pPlayer",
+      "pages": [
+        "pages/music-player/index"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/home-music/index": {
+      "network": "all",
+      "packages": [
+        "packageDetail",
+        "packagePlayer"
+      ]
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fafafa",

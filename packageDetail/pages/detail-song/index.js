@@ -1,6 +1,6 @@
 // pages/detail-song/index.js
-import { playerStore, rankingStore } from '../../store/index'
-import { getMenuDetail } from '../../service/api_music'
+import { playerStore, rankingStore } from '../../../store/index'
+import { getMenuDetail } from '../../../service/api_music'
 Page({
 
   /**
