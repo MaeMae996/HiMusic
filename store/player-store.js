@@ -109,7 +109,7 @@ const playerStore = new HYEventStore({
         this.dispatch("changeNewMusicAction")
       })
 
-      // 4. 监听暂停/播放
+      // 4. 监听暂停/播放/停止
       audioContext.onPlay(() => {
         ctx.isPlaying = true
       })
@@ -118,6 +118,7 @@ const playerStore = new HYEventStore({
       })
       audioContext.onStop(() => {
         ctx.isPlaying = false
+        ctx.isStoping = true
       })
     },
 
