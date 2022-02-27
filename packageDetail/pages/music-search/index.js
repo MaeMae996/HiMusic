@@ -48,7 +48,7 @@ Page({
       this.setData({ searchSuggest })
 
       // ->转化成nodes
-      const suggestKeywords = searchSuggest.map(item => item.keyword)
+      const suggestKeywords = searchSuggest?.map(item => item.keyword)
       const suggestNodes = []
       for (const keywords of suggestKeywords) {
         const nodes = stringToNodes(keywords, searchVal)
