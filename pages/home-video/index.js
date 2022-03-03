@@ -17,11 +17,6 @@ Page({
    */
   onLoad: function (options) {
     this.getTopMVData(0)
-    // const res = await getTopMV(0);
-    // this.setData({ topMVs: res.data })
-    /*getTopMV(0).then(res => {
-      this.setData({ topMVs: res.data })
-    })*/
   },
 
   /**
@@ -57,7 +52,6 @@ Page({
    * @param {*} event 
    */
   handleVideoItemClick: function (event) {
-    // console.log(event);
     const id = event.currentTarget.dataset.item.id;
     // 页面跳转
     wx.navigateTo({
